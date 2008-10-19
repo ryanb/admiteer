@@ -1,0 +1,10 @@
+<div id="new_task_<%= index %>">
+<% fields_for "event[new_ticket_types][#{index}]", ticket_type do |f| %>
+  <fieldset>
+    <h4>New Event Ticket</h4>
+    <%= render :partial => 'ticket_types/fields', :locals => {:f => f} %>
+    <p><%= link_to_function("remove") { |p| p.remove("new_task_#{index}") } %></p>
+    <div></div>
+  </fieldset>
+<% end %>
+</div>

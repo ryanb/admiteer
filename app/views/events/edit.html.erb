@@ -1,0 +1,25 @@
+<% title "Edit Event: #{@event.name}" %>
+
+<%# TODO minor duplication with events/new.html.erb %>
+<div id="wide">
+	<div id="newevent">
+	  <%= error_messages_for(:event, :graphic) %>
+		<% form_for @event, :html => { :multipart => true } do |f| %>
+			<h1>Edit Event: <%=h @event.name %></h1>
+      <%= render :partial => 'fields', :locals => {:f => f} %>
+			
+			<div class="right">
+				<div id="ticket_types">
+		  		<% for ticket_type in @event.ticket_types %>
+					  <%= render :partial => 'ticket_types/edit_fields', :locals => { :ticket_type => ticket_type } %>
+	        	<% end %>
+				</div>
+				<div class="t-right">
+		    		<%= render :partial => 'add_ticket_type_link', :locals => { :index => @event.ticket_types.size } %>
+				</div>
+				<br />
+				<%= submit_tag 'Update Event', :class => 'orange bigsubmit' %>
+			</div>
+		<% end %>
+	</div>
+</div>

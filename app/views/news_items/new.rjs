@@ -1,0 +1,2 @@
+page[:new_news_item_link].hide
+page[:new_news_item_holder].replace_html :partial => 'form'

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Admiteer - <%= h(yield(:title)) %></title>
+    <%= stylesheet_link_tag 'application', 'calendar_date_select', 'calendar_date_select_red', :cache => 'all' %>
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'calendar_date_select' %>
+    <%= yield :head %>
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<a href="/" id="logo"><img src="/images/logo.jpg" width="315" height="90" alt="Admiteer" title="Admiteer" /></a>
+			
+			<ul id="nav">
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About Admiteer</a></li>
+				<li><a href="/events">Browse Events</a></li>
+				<li><a href="/events/new">New Event</a></li>
+				<% if logged_in? %>
+				<li><a href="/dashboard">Dashboard</a></li>
+				<li><a href="/logout">Log Out</a></li>
+				<% else %>
+				<li><a href="/signup">Join Admiteer</a></li>
+				<li><a href="/login">Log In</a></li>
+				<% end %>
+			</ul>
+		</div>
+  		<%- flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <%- end -%>
+		<div id="main">
+      
+			<%= yield %>
+
+		</div>		
+		<div id="footer">&copy; 2007 - Admiteer | We are a <a href="http://railsrumble.com" class="alt">Rails Rumble</a> project by <a href="http://6brand.com" class="alt">Jack Danger Canty</a>, <a href="http://railscasts.com" class="alt">Ryan Bates</a>, and <a href="http://kellishaver.com" class="alt">Kelli Shaver</a>.</div>
+	</div>
+</body>
+</html>

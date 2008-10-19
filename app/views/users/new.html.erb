@@ -1,0 +1,22 @@
+<% title "Join Admiteer or Log-In" %>
+
+<div id="wide">
+<div class="col left">
+	<h1>Join Admiteer</h1>
+	<p>Join Admiteer and get started promoting your events. It's fast, it's easy, and it's FREE!</p>
+	
+	<%= error_messages_for :user %>
+	<% form_for @user do |f| %>
+  	<h4>Your Account Details</h4>
+  	<%= render :partial => 'fields', :locals => {:f => f} %>
+  	<%= submit_tag 'Sign up', :class => 'orange bigsubmit ' %>
+  	<div class="clear"></div>
+	<% end -%>
+</div>
+<div class="col right">
+  <h1>User Log-In</h1>
+  	<p>If you already have an account, please login below.<br /><br /></p>
+	
+  	<%= render :partial => 'session/form' %>
+</div>  
+</div>

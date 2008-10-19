@@ -1,0 +1,27 @@
+<% title "Tickets for #{@event.name}" %>
+<div id="wide">
+  	<h1>Types of tickets for <%= @event.name %></h1>
+	<p><small><%= link_to "Back to " + @event.name, event_path(@event) %></small></p>
+
+  <% unless @ticket_types.blank? %>
+    <table border="0" cellspacing="0" cellpadding="0" width="600">
+    	<thead>
+    		<tr>
+    			<th width="50">Sold</th>
+    			<th width="250">Type</th>
+    			<th width="100">Price</th>
+    			<th width="100"></th>
+    		</tr>
+    	</thead>
+    <% for ticket_type in @ticket_types %>
+      <tr class="<%= cycle('normal', 'alt') %>">
+        <td width="50"><%= ticket_type.tickets.count %>/<%= ticket_type.quantity %></td>
+        <td width="250"><%=h ticket_type.name %></td>
+        <td width="100"><%= number_to_currency(ticket_type.cost_per_ticket) %></td>
+        <td width="200"><%= link_to "View Purchased Tickets", event_ticket_type_path(@event, ticket_type) %></td>
+      </tr>
+    <% end %>
+    </table>
+  	<br /><br />
+	<% end %>
+</div>

@@ -1,0 +1,4 @@
+page[:new_news_item_link].show
+page[:new_news_item].reset
+page[:new_news_item].remove
+page.insert_html :bottom, :news_items, :partial => @news_item

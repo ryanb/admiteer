@@ -1,0 +1,32 @@
+<% form_tag session_path, :id => 'new_user', :class => 'alt' do -%>
+	<h4>Please Log In</h4>
+  
+  <% div_hidden_if !params[:openid_url].nil?, :id => 'traditional_login' do %>
+	  <p class="t-center">Alternatively, <%= swap_login_link("login through OpenID") %>.</p>
+  	<fieldset>
+    	<label for="login">Login</label>
+    	<%= text_field_tag 'login', params[:login] %>
+    </fieldset>
+
+    <fieldset>
+    	<label for="password">Password</label>
+    	<%= password_field_tag 'password' %>
+    </fieldset>
+  <% end %>
+
+  <% div_hidden_if params[:openid_url].nil?, :id => 'openid_login' do %>
+	  <p class="t-center"><%= swap_login_link("Don't have an OpenID Account?") %></p>
+    <fieldset>
+    	<label for="openid_url">OpenID URL</label>
+    	<%= text_field_tag 'openid_url', params[:openid_url] %>
+    </fieldset>
+  <% end %>
+
+	<fieldset>
+		<label for="remember_me">Remember Me:</label>
+		<%= check_box_tag 'remember_me', 1, false, :class => 'smallinput' %>
+	</fieldset>
+		
+	<%= submit_tag 'Log in', :class => 'bigsubmit orange' %>
+	<div class="clear"></div>
+<% end -%>

@@ -1,0 +1,111 @@
+<% title @event.name %>
+
+<% add_to_head auto_discovery_link_tag(:rss, formatted_event_url(@event, :rss), :title => @event.name) %>
+
+<div id="colwrap-r">
+	<div id="content" class="left">
+		<h1><%=h @event.name %></h1>
+	  <% if logged_in? && current_user.owns_event?(@event) %>
+		  <p><%= link_to 'Edit Event', edit_event_path(@event), :class => 'blue' %></p>
+		<% end %>
+		<% unless @event.graphic.nil? %>
+		  <div class="t-center"><%= image_from_graphic(@event.graphic) %></div><br /><br />
+		<% end %>
+		<div class="outlined alt t-center">
+			<strong>
+				<% if @event.starts_at != @event.ends_at %>
+					From <%=h @event.starts_at.strftime('%B %d, %Y at %I:%M %p') %> to <%=h @event.ends_at.strftime('%B %d, %Y at %I:%M %p') %>
+				<% else %>
+					On <%=h @event.starts_at.strftime('%B %d, %Y at %I:%M %p') %>
+				<% end %>
+			</strong>
+			<br /><br />
+		  <%= h(@event.address) + tag(:br) unless @event.address.blank? %>
+		  <%= h(@event.city_state_zip) + tag(:br) unless @event.city_state_zip.blank? %>
+		  <%= h(@event.country) + (tag(:br)*2) unless @event.country.blank? %>
+		  <%=h @event.phone %> 
+		</div>
+		<h2>About This Event</h2>
+		<%= simple_format h(@event.description) %>
+		<br /><br />
+		<% unless @event.news_items.empty? && !(logged_in? && current_user.owns_event?(@event)) %>
+  		<h2>
+  		  <%= link_to image_tag('rss_small.jpg', :alt => "RSS for #{@event.name} news"), formatted_event_url(@event, :rss) %>
+  		  News &amp; Updates
+  		</h2>
+		  <div id="news_items">
+  		  <%= render :partial => @event.news_items %>
+  		</div>
+  	  <% if logged_in? && current_user.owns_event?(@event) %>
+  	    <div id="new_news_item_holder"></div>
+  		  <p id="new_news_item_link">
+  		    <%= link_to_remote 'Add News Item', {
+  		            :url => new_event_news_item_path(@event),
+  		            :method => 'get'}, { :class => 'blue' } %>
+  		  </p>
+  		<% end %>
+	  <% end %>
+		<h2>Show Your Support!</h2>
+		<p>Display news &amp; updates for this event on your site by copying and pasting the code below:</p>
+<pre class="alt2 outlined">
+&lt;iframe src="http://admiteer.com/events/<%=h @event.id %>/share"
+width="215" height="350" frameborder="0" marginheight="0"
+marginwidth="0" scrolling="no"&gt;&lt;/iframe&gt;
+</pre>
+	</div>
+	<div id="sidebar" class="right">
+		<div class="pad">
+			  
+			<%  if @event.host.eql?(current_user) %>
+			  <div class="alt outlined">
+  				<strong>Ticket Sales</strong>
+  				<p><%= content_tag :strong, @event.tickets.count %> / <%= content_tag :strong, @event.total_quantity %> tickets sold</p>
+  				<p><%= link_to 'See purchases', event_ticket_types_path(@event) %></p>
+			  </div>
+			<%  end %>
+		  <div class="alt outlined">
+				<strong>Buy Tickets For This Event</strong>
+				<br /><br />
+				
+				<%  for ticket_type in @event.ticket_types %>
+				  <% form_tag new_purchase_path, :class => 'alt2', :id => "ticket_type_#{ticket_type.id}_form", :method => :get do %>
+						<h4><%=h ticket_type.name %></h4>
+						<%= ticket_type_cost_and_quantity(ticket_type) %>
+						<%= text_field_tag :quantity, '1', :size => 2 %> Qty.
+						<%= hidden_field_tag :ticket_type_id, ticket_type.id %>
+						<%= submit_tag 'BUY!', :name => nil, :class => 'orange', :onclick => "if(Number($('ticket_type_#{ticket_type.id}_form').down('input').value) < 1) {return false;}" %>
+					<%  end %>
+				<%  end %>
+			</div>
+			<%  if @event.has_map? %>
+    		<div id="gmap" class="alt2">
+    			  <%= @event.map.to_html%>
+    			  <%= @event.map.div %>
+  			</div>
+ 			  <%= link_to 'See the full map', "http://maps.google.com/maps?q=#{@event.full_address}", :class => 'alt right' unless @event.full_address.blank? %><br /><br />
+			<div class="clear"></div>
+		  <%  elsif @event.host.eql?(current_user) %>
+		    <div class="alt2 outlined">
+  		    <h3>Y'know, if <%= link_to "you add an address", edit_event_path(@event) %> to this event we can show a map.</h3>
+  		  </div>
+		  <%  end %>
+			<%  if @event.has_flickr? %>
+    		<h2>Latest Photos</h2>
+  			<%  @event.flickr_images.each do |image| %>
+  			  <%= link_to image_tag(image.src), image.href, :class => 'flickr' %>
+  			<%  end %>
+  			<div class="t-right">
+  			  <%= link_to 'See them all at Flickr', @event.flickr_url, :class => 'alt' %>
+  			</div>
+  		<%  elsif @event.host.eql?(current_user) %>
+		    <div class="alt2 outlined">
+  		    <h3>
+  		      Psssst! <br />
+  		      <small>If you <%= link_to "pick a flickr page", edit_event_path(@event) %> we can put the pictures here.</small>
+  		    </h3>
+  		  </div>
+  		<%  end %>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

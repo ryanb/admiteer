@@ -1,0 +1,56 @@
+<fieldset>
+	<h4>Event Name</h4>				
+	<%= f.text_field :name, :class => 'widefield' %>
+</fieldset>
+<fieldset>
+	<h4>Describe Your Event</h4>
+	<%= f.text_area :description, :rows => 5, :class => 'widefield' %>
+</fieldset>
+<fieldset>
+	<h4>Image Upload</h4>
+	<%= file_field :graphic, :uploaded_data %>
+</fieldset>
+<div class="left">
+	<fieldset>
+		<h4>Starting On:</h4>
+		<%= f.calendar_date_select :starts_at, :after_close => "$('event_ends_at').value = $('event_starts_at').value", :size => '30', :time => '"Today"' %>
+	</fieldset>
+	<fieldset>
+		<h4>Ending On:</h4>
+		<%= f.calendar_date_select :ends_at, :size => '30', :time => '"Today"' %>
+	</fieldset>
+	<fieldset>
+		<h4>Add your Photos:</h4>
+		<%= f.text_field :flickr_url, :size => '30' %><%= image_tag 'flickr_logo.gif', :height => '12' %><br />
+		<small>&nbsp;&nbsp;Enter the url of any page on Flickr with photos.</small>
+	</fieldset>
+	<fieldset>
+		<h4>Contact Information</h4>
+		<div>
+			<label>Address:</label>
+			<%= f.text_field :address %>
+		</div>
+		<div>
+			<label>City:</label>
+			<%= f.text_field :city %>
+		</div>
+		<div>
+			<label>State:</label>
+			<%= f.text_field :state, :size => 2 %>
+		</div>
+		<div>
+			<label>Zip:</label>
+			<%= f.text_field :zip, :size => 10 %>
+		</div>
+		<div>
+			<label>Country:</label>
+			<%= f.country_select :country, ['United States'] %>
+		</div>
+		<div><br /></div>
+		<div>
+			<label>Phone:</label>
+			<%= f.text_field :phone %>
+		</div>
+		<div></div>
+	</fieldset>
+</div>

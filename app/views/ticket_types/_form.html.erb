@@ -1,0 +1,20 @@
+<div id="<%= dom_id(ticket_type) %>">
+<% fields_for "event[new_ticket_types][#{index}]", ticket_type do |t| %>
+<fieldset>
+  <h4>Event Ticket</h4>
+  <div>
+    <label>Ticket Type:</label>
+    <%= t.text_field :name %>
+  </div>
+  <div>
+    <label>Cost per Ticket:</label>
+    <%= t.text_field :cost_per_ticket, :size => 8 %>
+  </div>
+  <div>
+    <label>Qty:</label>
+    <%= t.text_field :quantity, :size => 3 %>
+  </div>
+  <div class="clear"></div>
+</fieldset>
+</div>
+<% end %>

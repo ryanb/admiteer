@@ -1,0 +1,19 @@
+<% title "Edit Profile" %>
+
+<div id="wide">
+	<h1>Edit Profile</h1>
+	
+	<%= error_messages_for :user %>
+	<% form_for @user do |f| %>
+	<h4>Your Account Details</h4>
+	
+	<%= render :partial => 'fields', :locals => {:f => f} %>
+	<fieldset>
+  	<label for="identity_url">OpenID URL</label>
+  	<%= f.text_field :identity_url %>
+  </fieldset>
+
+	<%= submit_tag 'Update Profile', :class => 'orange bigsubmit ' %>
+	<div class="clear"></div>
+	<% end -%>
+</div>

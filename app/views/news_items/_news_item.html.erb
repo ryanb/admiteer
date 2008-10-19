@@ -1,0 +1,4 @@
+<div class="update">
+	<p class="alt2"><small>Posted on: <%= news_item.created_at.strftime('%B %d, %Y at %I:%M%p') %></small></p>
+	<%= simple_format h(news_item.content) %>
+</div>

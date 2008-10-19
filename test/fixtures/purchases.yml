@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+quentin_buys_metallica:
+  id: 1
+  buyer_id: 1
+  quantity: 2
+  ticket_type_id: 3
+  paid_at: <%= Time.now.to_s(:db) %>
+  created_at: 2007-09-08 10:49:12
+  updated_at: 2007-09-08 10:49:12

@@ -1,0 +1,46 @@
+<% title "Events" %>
+<% add_to_head auto_discovery_link_tag(:rss, formatted_events_url(:rss), :title => 'Upcoming events on Admiteer') %>
+
+<div id="wide">
+	<h1>Browse Events</h1>
+	
+	<div class="t-right alt">
+		<% form_tag events_path, :id => 'search', :method => 'get' do %>
+			Search for Events: <%= text_field_tag :query, params[:query], :size => 30 %>&nbsp;<%= submit_tag "Search", :name => nil %>
+		<% end %>
+	</div>
+	<br /><br />
+	<div class="inverse t-right">
+		<% form_tag events_path, :id => 'sort', :method => 'get' do %>
+		  <div><%= hidden_field_tag :query, params[:query], :id => 'hidden_query' %></div>
+		  Sort events by:
+		  <%= select_tag :sort, options_for_select([['Event Date', 'starts_at'], ['Name', 'name'], ['Location', 'location']], params[:sort]), :id => 'sort_box' %>
+			<input type="submit" value="Go" />
+		<% end %>
+	</div>
+	<ol>
+		<% for event in @events %>
+		<li>
+			<div class="<%= cycle('normal', 'alt2') %>">
+				<%= link_to h(event.name), event %> <%= link_to 'BUY!', event, :class => 'buylink' %><br />
+				<small>
+				  <b>Event Date:</b> <%= event.starts_at.strftime('%m/%d/%Y') if event.starts_at %>
+				  <%= join_ticket_types(event.ticket_types) %>
+				</small><br />
+				<% unless event.brief_location.blank? %>
+  				<small>
+  				  <b>Location:</b> <%=h event.brief_location %>
+  				</small><br />
+  			<% end %>
+				<%= truncate(h(event.description), 255, "...") %>
+			</div>
+			<br /><br />
+		</li>
+		<% end %>
+	</ol>
+	<div class="inverse">
+	  <% if @events.page_count > 1 %>
+	    Pages: <%= will_paginate(@events) %>
+	  <% end %>
+	</div>
+</div>

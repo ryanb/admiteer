@@ -1,0 +1,389 @@
+body {
+	margin:0;
+	padding:0;
+	background:#ddeede;
+	font-family:helvetica, arial, verdana, sans-serif;
+	font-size:10pt;
+	color:#000;
+}
+
+img, fieldset { border:none; }
+form { margin:0; padding:0; }
+h3, h4, h5, h6 {
+	margin:0;
+	padding:0;
+}
+
+h1 {
+	color:#BA4500;
+	font-size:18pt;
+	font-weight:normal;
+	text-transform:uppercase;
+}
+
+h2 {
+	color:#122738;
+	font-size:14pt;
+	font-weight:normal;
+}
+
+button { font-size:8pt; }
+
+a {
+	color:#BA4500;
+}
+
+a:hover {
+	background:#BA4500;
+	color:#fff;
+}
+  
+a.buylink {
+	background:#BA4500;
+	color:#fff;
+	font-weight:bold;
+	text-decoration:none;
+	padding:0 4px 0 4px;
+	font-size:8pt;
+}
+
+a.alt { color:#fff; background:none !important; }
+a.alt:hover { background:none; }
+a.flickr {
+	width:125px;
+	height:125px;
+	display:block;
+	border:8px solid #122738;
+	float:left;
+	background:#ffe;
+	overflow:hidden !important;
+}
+#gmap a, #gmap a:hover { background:none; }
+h4 {
+	background:#122738;
+	color:#fff;
+	padding:2px;
+	margin:0 0 5px 0;
+}
+
+.alt2 { background:#DDEEDE; }
+.inverse {
+	background:#122738;
+	color:#fff;
+	padding:10px;
+}
+.col { width:370px; }
+.right { float:right; }
+.left { float:left; }
+.t-right { text-align:right; }
+.t-left { text-align:left; }
+.t-center { text-align:center; }
+.alt { background:#eec !important; }
+.big { font-size:16pt; }
+.smallinput { width:16px !important; margin:0 !important; padding:0 !important; float:left !important;}
+#colwrap-r {
+	background:url(/images/rcolbg.jpg) top left repeat-y #fff;
+}
+#sidebar .pad { padding:10px 0 10px 10px; }
+.eventgraphic {
+	width:480px;
+	height:120px;
+	background:#DDEEDE;
+	margin-bottom:10px;
+}
+.outlined {
+	border:1px solid #BA4500;
+	padding:10px;
+}
+.orange { background:#BA4500; color:#fff; border:1px solid #000; padding:2px;}
+.blue { background:#122738; text-decoration:none; color:#fff; border:1px solid #000; padding:2px;}
+#gmap { height:250px; margin:10px 0 10px 0; }
+
+#container {
+	margin:10px auto 10px auto;
+	padding:0;
+	width:800px;
+	border:10px solid #122738;
+	background:#fff;
+	color:inherit;
+}
+
+#header {
+	height:90px;
+	background:#BA4500;
+	color:#fff;
+	padding:10px;
+}
+
+#logo {
+	width:315px;
+	height:90px;
+	display:block;
+	float:left;
+}
+
+#nav {
+	width:320px;
+	float:left;
+	margin:0;
+	padding:15px 0 0 0;
+	float:right;
+}
+
+#nav li {
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	color:#fff;
+	display:inline;
+}
+
+#nav li a {
+	border-left:10px solid #BA4500;
+	padding:0 0 0 30px;
+	display:block;
+	width:120px;
+	float:left;
+	color:#fff;
+	text-decoration:none;
+	background:url(/images/nav_link_bg.jpg) top left no-repeat #BA4500;
+	height:20px;
+	line-height:20px;
+}	
+#nav li a:hover {
+	color:#BA4500;
+	background:url(/images/nav_link_bg.jpg) bottom left no-repeat #fff;
+}	
+	
+
+#sidebar {
+	width:300px;
+	background:#122738;
+}
+
+#sidebar.left {
+	height:650px;
+	min-height:650px;
+	height:auto !important;
+}
+
+#sidebar h2 {
+	font-size:12pt;
+	text-transform:uppercase;
+	font-weight:normal;
+	color:#fff;
+}
+
+table {
+	background:#ffd;
+	margin-bottom:5px;
+	border:1px solid #ba4500;
+}
+
+td {
+	height:25px;
+	line-height:25px;
+	color:#000 !important;
+}
+
+#sidebar table td { font-size:8pt; }
+
+td.item {
+	padding-left:20px;
+	background:url(/images/bullet.gif) top left no-repeat;
+}
+
+th {
+	text-align:left;
+	padding:2px;
+	color:#fff;
+	background:#122738;
+	margin:0;
+}
+
+#upcoming {
+	margin-right:10px;
+	margin-top:10px;
+	border-top:1px solid #fff;
+}
+
+
+#upcoming {
+	color:#fff;
+	background:#122738;
+}
+
+#content {
+	width:480px;
+	padding:10px;
+}
+
+#footer {
+	clear:both;
+	border-top:1px solid #122738;
+	background:#BA4500;
+	color:#fff;
+	text-align:center;
+	padding:10px;
+}
+
+#loginform {
+	width:260px;
+	float:left;
+	margin:0;
+	padding:0;
+}
+
+fieldset {
+	clear:both;
+	padding: 0 0 2px 0;
+	background:#eec;
+	border-bottom:3px solid #fff;
+}
+
+#content #loginform fieldset { background:#fff !important; }
+
+#loginform fieldset label {
+	width:90px !important;
+	padding-right:10px;
+	text-align:right;
+	display:block;
+	float:left;
+}
+
+#new_user fieldset label, .edit_user fieldset label {
+	width:120px !important;
+	padding-right:10px;
+	text-align:right;
+	display:block;
+	float:left;
+}
+#new_user fieldset input, .edit_user fieldset input { width:200px }
+#loginform fieldset input { width:150px; }
+#loginform input { float:right; }
+
+#joinbtn, #joinbtn:hover {
+	float:right;
+	border-right:10px solid #fff;
+	background:#fff;
+}
+
+/****/
+
+#wide {
+	padding:10px;
+	height:600px;
+	min-height:600px;
+	height:auto !important;
+}
+
+#new_user, .edit_user, #news_post form { width:350px; margin:0; padding:0 !important; }
+
+#newevent fieldset, #new_user, .edit_user {
+	background:#eec;
+	margin-bottom:3px;
+	border:1px solid #BA4500;
+}
+
+#new_news_item { border:1px solid #BA4500; background:#eec; margin:0; padding:0; }
+#new_news_item fieldset { border:none !important; }
+#new_news_item fieldset textarea { width:453px; }
+#new_user fieldset, .edit_user fieldset, .edit_user { border:none !important; margin-bottom:3px; }
+
+#newevent input, #newevent, textarea {
+	margin:0 5px 5px 5px;
+}
+
+.widefield { width:750px; }
+
+#newevent .left, #newevent .right {
+	width:370px;
+}
+
+fieldset div {
+	clear:both;
+}
+
+#newevent .right label, #newevent .left label {
+	width:100px;
+	float:left;
+	text-align:right;
+}
+
+#event_country { 
+	width:200px;
+	margin-left:5px;
+}
+
+.bigsubmit {
+	position:relative;
+	clear:both;
+	width:120px;
+	padding:2px 20px 2px 20px;
+	float:right !important;
+	margin:10px;
+}
+
+#newevent .right div input, #newevent .left div input, #newevent .left div select {
+	float:left;
+}
+
+#wide #search { padding:10px; }
+
+/********/
+
+/* embeds the openid image in the text field */
+input.openid_url {
+   background: url(http://openid.net/login-bg.gif) no-repeat;
+   background-color: #fff;
+   background-position: 0 50%;
+   color: #000;
+   padding-left: 18px;
+}
+
+#flash_notice, #flash_error {
+  padding: 5px 8px;
+  margin: 0;
+  background-color: #ffe;
+  border: solid 1px #122738;
+  color:#BA4500;
+}
+
+.clear {
+  clear: both;
+}
+
+.fieldWithErrors {
+  display: inline;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #BA4500;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #ffe;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+#errorExplanation p {
+  color: #122738;
+  margin-bottom: 0;
+  padding: 8px;
+}
+#errorExplanation ul {
+  margin: 2px 24px;
+}
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: disc;
+}

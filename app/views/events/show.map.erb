@@ -1,0 +1,11 @@
+<%= image_tag 'pin.png', :style => 'float: left; margin-right: 2px;' %>
+<div id="map_address" style="font-family:arial, helvetica, sans-serif; font-size:9pt;">
+  <b><%= @event.name %><br /></b>
+  <small style="font-size:8pt;">
+    <%= @event.address %><br />
+    <%= @event.city_state_zip %>
+  </small>
+</div>
+<div id="map_date"  style="font-family:arial, helvetica, sans-serif; font-size:9pt; margin-top:5px; text-align:right;">
+  <%= display_date_range(@event.starts_at, @event.ends_at) %>
+</div>

@@ -1,0 +1,22 @@
+<%=
+      xml = Builder::XmlMarkup.new
+      xml.instruct! :xml, :version=>"1.0" 
+      xml.rss(:version=>"2.0"){
+        xml.channel{
+          xml.title("#{@event.name} - #{display_date_range(@event.starts_at, @event.ends_at)}")
+          xml.link(event_url(@event))
+          xml.description(@event.description)
+          xml.language('en-us')
+          @event.news_items.each do |news_item|
+            xml.item do
+              xml.title(truncate(news_item.content))
+              xml.category(@event.name)
+              xml.description(news_item.content)
+              xml.pubDate(news_item.created_at.strftime("%a, %d %b %Y %H:%M:%S %z"))
+              xml.link(event_url(@event))
+              xml.guid(event_url(@event))
+            end
+          end
+        }
+      }
+%>

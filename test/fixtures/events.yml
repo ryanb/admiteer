@@ -1,0 +1,34 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+jon_schmidt:
+  id: 1
+  host_id: 1
+  name: Jon Schmidt Concert
+  description: MyText
+  starts_at: <%= 3.days.from_now.to_s(:db) %>
+  ends_at: <%= 3.days.from_now.to_s(:db) %>
+  created_at: 2007-09-07 22:26:31
+  updated_at: 2007-09-07 22:26:31
+metallica:
+  id: 2
+  host_id: 2
+  name: Metallica
+  description: Metallica at the Gorge at George
+  flickr_url: flickr_page.html
+  flickr_feed_url: flickr_feed.atom
+  address: 12330 Roosevelt Way NE #205
+  city: Seattle
+  state: WA
+  country: USA
+  starts_at: <%= Time.now.to_s(:db) %>
+  ends_at: <%= Time.now.to_s(:db) %>
+  created_at: 2007-09-07 22:26:31
+  updated_at: 2007-09-07 22:26:31
+free_event:
+  id: 3
+  host_id: 1
+  name: Free Event
+  description: Book signing by Al Gore
+  starts_at: <%= 3.days.from_now.to_s(:db) %>
+  ends_at: <%= 3.days.from_now.to_s(:db) %>
+  created_at: 2007-09-07 22:26:31
+  updated_at: 2007-09-07 22:26:31

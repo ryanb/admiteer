@@ -1,0 +1,32 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+jon_schmidt_front_row:
+  id: 1
+  name: Jon Schmidt Front Row
+  event_id: 1
+  cost_per_ticket: 9.99
+  quantity: 50
+  created_at: 2007-09-07 23:45:22
+  updated_at: 2007-09-07 23:45:22
+jon_schmidt_back_row:
+  id: 2
+  name: Jon Schmidt Front Row
+  event_id: 1
+  cost_per_ticket: 9.99
+  quantity: 50
+  created_at: 2007-09-07 23:45:22
+  updated_at: 2007-09-07 23:45:22
+metallica_front_row:
+  id: 3
+  name: Metallica Front Row
+  event_id: 2
+  cost_per_ticket: 49.99
+  quantity: 45
+  created_at: 2007-09-07 23:45:22
+  updated_at: 2007-09-07 23:45:22
+free_event:
+  id: 4
+  name: Free Event
+  event_id: 3
+  quantity: 300
+  created_at: 2007-09-09 23:45:22
+  updated_at: 2007-09-09 23:45:22  

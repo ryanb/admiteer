@@ -1,0 +1,34 @@
+<fieldset>
+	<label for="login">Login</label>
+	<%= f.text_field :login %>
+</fieldset>
+
+<fieldset>
+	<label for="email">Email</label>
+	<%= f.text_field :email %>
+</fieldset>
+
+<fieldset>
+	<label for="full_name">Full Name</label>
+	<%= f.text_field :full_name %>
+</fieldset>
+
+<% div_hidden_if !@user.identity_url.blank?, :id => 'password_fields' do %>
+  <fieldset>
+  	<label for="password">Password</label>
+  	<%= f.password_field :password %>
+  </fieldset>
+  <fieldset>
+  	<label for="password_confirmation">Confirm Password</label>
+  	<%= f.password_field :password_confirmation %>
+  </fieldset>
+  <p class="t-center"><%= swap_identity_links("or use OpenID") %></p>
+<% end %>
+
+<% div_hidden_if @user.identity_url.blank?, :id => 'openid_fields' do %>
+  <fieldset>
+  	<label for="identity_url">OpenID URL</label>
+  	<%= f.text_field :identity_url %>
+  </fieldset>
+  <p class="t-center"><%= swap_identity_links("or use a password") %></p>
+<% end %>

@@ -1,0 +1,30 @@
+<% title 'Purchase Tickets' %>
+
+<%  @user ||= User.new %>
+<div id="wide">
+	<h1>You're purchasing <%= pluralize(@purchase.quantity, 'ticket') %> to <%= @purchase.event.name %></h1>
+	<p>Review your purchase details and complete the form below to buy your tickets. 
+	  <%  if !@purchase.free? %>
+	    You will be redirected to PayPal to make your payment, after which time, you'll be returned here so that you can download and print your tickets. <strong> This is NOT a test transaction which means you will be charged.</strong> If you simply want to test Admiteer, please <%= link_to "find a free event", events_path %> instead.
+	  <%  else %>
+	    The total for this purchase is zero bucks so you can download and print your tickets right away.
+	  <%  end %>
+	</p>
+	<h2>Review Your Order</h2>
+	<p>
+		<strong>Event: </strong><%= @purchase.event.name %><br />
+		<strong>No. of Tickets:</strong> <%= @purchase.quantity %><br />
+		<strong>Cost per Ticket: </strong><%= number_to_currency (@purchase.ticket_type.cost_per_ticket || 0) %><br />
+		<strong>Total Cost</strong> <%= number_to_currency @purchase.total_cost %>
+	</p>
+	
+  <%= error_messages_for :purchase %>
+  <% form_for @purchase do |f| %>
+    <div class="alt2 outlined">
+      <div><%= f.hidden_field :quantity %></div>
+      <div><%= f.hidden_field :ticket_type_id %></div>
+      <%= submit_tag 'Buy These Tickets!', :class => 'orange right' %>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+</div>

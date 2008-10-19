@@ -1,0 +1,24 @@
+<% title "Create a New Event" %>
+
+<div id="wide">
+	<div id="newevent">
+	  <%= error_messages_for(:event, :graphic) %>
+		<% form_for @event, :html => { :multipart => true } do |f| %>
+			<h1>Create a new Event</h1>
+			<%= render :partial => 'fields', :locals => {:f => f} %>
+			
+			<div class="right">
+				<div id="ticket_types">
+		  			<% @event.ticket_types.each_with_index do |ticket_type, index| %>
+					<%= render :partial => 'ticket_types/new_fields', :locals => { :ticket_type => ticket_type, :index => index } %>
+	        		<% end %>
+				</div>
+				<div class="t-right">
+		    		<%= render :partial => 'add_ticket_type_link', :locals => { :index => @event.ticket_types.size } %>
+				</div>
+				<br />
+				<%= submit_tag 'Create Event', :class => 'orange bigsubmit' %>
+			</div>
+		<% end %>
+	</div>
+</div>

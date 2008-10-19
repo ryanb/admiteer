@@ -1,0 +1,8 @@
+user: www
+cwd: /www/admiteer/current
+port: "6000"
+environment: production
+group: www
+address: 127.0.0.1
+pid_file: log/mongrel.pid
+servers: 3

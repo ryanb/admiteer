@@ -1,0 +1,10 @@
+<div id="<%= dom_id(ticket_type) %>">
+<% fields_for "event[edit_ticket_types][#{ticket_type.id}]", ticket_type do |f| %>
+  <fieldset>
+    <h4>Edit Event Ticket</h4>
+    <%= render :partial => 'ticket_types/fields', :locals => {:f => f} %>
+    <p><%= link_to_remote "remove", :url => ticket_type, :method => :delete, :confirm => "Are you sure?" %></p>
+    <div></div>
+  </fieldset>
+<% end %>
+</div>

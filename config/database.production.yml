@@ -1,0 +1,20 @@
+credentials: &credentials
+  adapter: mysql
+  username: www
+  socket:  <%=
+    ['/opt/local/var/run/mysql5/mysqld.sock', # darwinports
+     '/opt/local/var/run/mysqld/mysqld.sock', # darwinports, again
+     '/var/run/mysqld/mysqld.sock',           # ubuntu/debian/gentoo
+     '/tmp/mysql.sock'].select { |f| File.exist? f }.first %>
+
+development:
+  <<: *credentials
+  database: admiteer_development
+
+test:
+  <<: *credentials
+  database: admiteer_test
+
+production:
+  <<: *credentials
+  database: admiteer

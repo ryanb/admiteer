@@ -1,0 +1,10 @@
+<% remote_form_for [@event, @news_item] do |f| %>
+	<h4>News Item Content</h4>				
+	<fieldset>
+    <%= f.text_area :content, :rows => 8 %>
+    </fieldset>
+	<div>
+		<%= submit_tag 'Create News Item', :class => 'orange right' %>
+	</div>
+	<div class="clear"></div>
+<% end %>

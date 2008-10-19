@@ -1,0 +1,20 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# uncomment the following when they can be saved validly
+
+# jon_schmidt:
+#   id: 1
+#   event_id: 1
+#   size: 1
+#   content_type: image
+#   filename: test.jpg
+#   height: 1
+#   width: 1
+# metallica:
+#   id: 2
+#   event_id: 2
+#   size: 1
+#   content_type: image
+#   filename: test2.jpg
+#   height: 1
+#   width: 1

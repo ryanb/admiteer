@@ -1,0 +1,33 @@
+<% title "#{@ticket_type.name} Tickets for #{@event.name}" %>
+<div id="wide">
+  	<h1><%= "#{@ticket_type.name} Purchases for #{@event.name}" %></h1>
+	<p><small><%= link_to "Back to " + @event.name, event_path(@event) %> - <%= link_to 'See all tickets for this event', event_ticket_types_path(@event) %></small>)</p>
+
+  <% unless @ticket_type.tickets.blank? %>
+
+  	<%= will_paginate @purchases %>
+
+    <table border="0" cellspacing="0" cellpadding="0" width="600">
+    	<thead>
+    		<tr>
+    			<th width="50">Qty.</th>
+    			<th width="100">Attendee login</th>
+    			<th width="250">Email</th>
+    			<th width="100">Purchased</th>
+    		</tr>
+    	</thead>
+    <% for purchase in @ticket_type.purchases %>
+      <tr class="<%= cycle('normal', 'alt') %>">
+        <td><%=h purchase.quantity %></td>
+        <td><%=h purchase.buyer.login %></td>
+        <td><%= purchase.buyer.email %></td>
+        <td><%= purchase.paid_at.strftime("%b %d, %Y") if purchase.paid_at %></td>
+      </tr>
+    <% end %>
+    </table>
+  	<br /><br />
+  	
+  	<%= will_paginate @purchases %>
+  	
+	<% end %>
+</div>

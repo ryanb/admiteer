@@ -1,0 +1,4 @@
+page.insert_html :bottom, :ticket_types, :partial => 'new_fields',
+                 :locals => { :ticket_type => @ticket_type, :index => params[:index] }
+ 
+page.replace :add_ticket_type_link, :partial => 'events/add_ticket_type_link', :locals => { :index => (params[:index].to_i + 1) }

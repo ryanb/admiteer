@@ -1,0 +1,60 @@
+<% title "Dashboard" %>
+<div id="wide">
+	<h1>Hello, <%=h @user.login %></h1>
+	<p><%= link_to 'Edit Profile', edit_user_path(@user), :class => 'blue' %></p>
+
+  <h2>Tickets You've Purchased</h2>
+  <% if @user.paid_purchases.empty? %>
+	  <p>You currently have not purchased any tickets.</p>
+	  <p><%= link_to 'Browse Events', events_path %></p>
+	<% else %>
+    <table border="0" cellspacing="0" cellpadding="0" width="600">
+    	<thead>
+    		<tr>
+    			<th width="50">Qty.</th>
+    			<th width="250">Event Title</th>
+    			<th width="100">Price</th>
+    			<th width="100"></th>
+    		</tr>
+    	</thead>
+    <% for purchase in @user.paid_purchases %>
+      <tr class="<%= cycle('normal', 'alt') %>">
+        <td width="50"><%=h purchase.quantity %></td>
+        <td width="250"><%=h purchase.event.name unless purchase.event.nil? %></td>
+        <td width="100"><%= number_to_currency(purchase.total_cost) unless purchase.ticket_type.nil? %></td>
+        <td width="200"><%= link_to "Print Tickets (PDF)", formatted_purchase_path(purchase, 'pdf'), :class => 'buylink' %></td>
+      </tr>
+    <% end %>
+    </table>
+  	<br /><br />
+	<% end %>
+	
+  <h2>Events You're Hosting</h2>
+	<% if @user.events.empty? %>
+	  <p>You are currently not hosting any events.</p>
+	  <p><%= link_to 'Create an Event', new_event_path %></p>
+	<% else %>
+  	<table border="0" cellspacing="0" cellpadding="0" width="780">
+  	<thead>
+  		<tr>
+  			<th width="400">Your Event</th>
+  			<th width="75" class="t-center">&nbsp;</th>
+  			<th width="100" class="t-center">Tickets Sold</th>
+  			<th width="150" class="t-center">Tickets Remaining</th>
+  			<th width="120" class="t-center">Gross Earnings</th>
+  		</tr>
+  	</thead>
+  	<% for event in @user.events %>
+  	  <tr class="<%= cycle('normal', 'alt') %>" id="event_<%= event.id %>">
+  	  	<td width="400" class="item"><%= link_to h(event.name), event %> <%= event.starts_at.strftime('%b %d, %Y')%></td>
+  	  	<td width="100" class="t-center"><%= link_to 'details', event_ticket_types_path(event) %></td>
+  	  	<td width="100" class="t-center"><%= event.tickets.count %>/<%= event.total_quantity %></td>
+  	  	<td width="150" class="t-center"><%= event.tickets_remaining %></td>
+  	  	<td width="120" class="t-center"><%= number_to_currency event.earnings %></td>
+  	  </tr>
+  	<% end %>
+  	</table>
+  <% end %>
+</div>
+
+<%= highlight_if_exists "event_#{params[:event_id]}" %>

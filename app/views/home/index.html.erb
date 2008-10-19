@@ -1,0 +1,59 @@
+			<% title "Welcome" %>
+			<% add_to_head auto_discovery_link_tag(:rss, formatted_events_url(:rss), :title => 'Upcoming events on Admiteer') %>
+
+			
+			<div id="content" class="right">
+				<img src="/images/main_photo.jpg" width="480" height="320" alt="" />
+				
+				<h1>SELL TICKETS AND START PROMOTING YOUR EVENT TODAY! - FREE!</h1>
+				
+				<% if logged_in? %>
+					<div class="t-center big alt outlined">Welcome back! <a href="/dashboard">Go to your dashboard.</a></div>
+				<% else %>
+  				<p>Join today to start promoting your event: Sell tickets online, publish news, share photos, and more!</p>
+				
+  				<% form_tag session_path, :id => 'loginform' do %>
+  					<fieldset>
+  						<label>Username:</label>
+  						<%= text_field_tag :login %>
+  					</fieldset>
+  					<fieldset>
+  						<label>Password:</label>
+  						<%= password_field_tag :password %>
+  					</fieldset>
+  					<div class="clear"></div>
+  				  <div class="t-center"><small>Alternatively, <%= link_to "login through OpenID", new_session_path(:openid_url => '') %>.</small></div>
+  					<%= submit_tag "Log-In" %>
+  				<% end %>
+				
+  				<a id="joinbtn" href="/signup"><img src="/images/join_btn.jpg" width="180" height="80" alt="Join Now!" /></a>
+  			<% end %>
+			</div>
+		
+			<div id="sidebar" class="left">
+				<h2>Find an Event &amp; Buy Tickets</h2>
+				<% form_tag events_path, :id => 'search', :method => 'get' do %>
+				  <%= text_field_tag :query, '', :size => 30 %>&nbsp;<%= submit_tag "Search", :name => nil %>
+				<% end %>
+				<div id="upcoming">
+					<h2>Upcoming Events</h2>
+					<table border="0" cellspacing="0" cellpadding="0" width="290">
+					<% for event in @events %>
+						<tr class="<%= cycle('normal', 'alt') %>">
+							<td width="140" class="item"><%= link_to truncate(h(event.name), 22, "..."), event %></td>
+							<td width="80"><%= event.starts_at.strftime('%m/%d/%Y') if event.starts_at %></td>
+							<td width="60"><%= link_to 'BUY', event, :class => 'buylink' %></td>
+						</tr>
+					<% end %>
+					</table>
+					<div class="t-right">
+						<a href="/events.rss"><img src="/images/rss_small.jpg" width="12" height="12" alt="rss" /></a> | <a class="alt" href="/events">All Events</a>
+					</div>
+				</div>
+				<div class="t-center">
+					<br /><br /><br /><br />
+					<a href="http://media.railscasts.com/videos/admiteer_tour.mov" target="_blank"><img src="/images/screencast.jpg" width="200" height="90" alt="Screencast"></a>
+					<br /><br />
+					<a href="http://vote.railsrumble.com/teams/74"><img src="/images/vote.jpg" width="150" height="75" alt="Vote for Us!" /></a>
+				</div>
+ 			</div>

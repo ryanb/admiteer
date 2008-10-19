@@ -1,0 +1,52 @@
+<head>
+<html>
+<title>News</title>
+<style type="text/css">
+	* { 
+		margin:0;
+		padding:0;
+		overflow:hidden;
+		font-family:helvetica, arial, verdana, sans-serif;
+		font-size:8pt;
+		border:none;
+	}
+	#admiteer_widget {
+		width:213px;
+		height:350px;
+		background:#ba4500;
+		border:1px solid #122378;
+	}
+	#admiteer_widget h4 {
+		height:20px;
+		line-height:20px;
+		color:#fff;
+		font-size:10pt;
+		font-weight:bold;
+		background:#122738;
+		padding:0 3px 0 3px;
+	}
+	#admiteer_widget ul { background:#ffd; height:220px; border-bottom:5px solid #122738; margin-bottom:3px; }
+	#admiteer_widget ul li {
+		list-style:square;
+		line-height:20px;
+		padding:0 3px 0 3px;
+	}
+	#admiteer_widget a { color:#ba4500; }
+	#admiteer_widget a:hover { color:#fff; background:#ba4500; }
+	#admiteer_widget .alt { background:#eec; }
+</style>
+</head>
+<div id="admiteer_widget">
+	<img src="/images/logo_small.jpg" width="213" height="60" alt="Admiteer">
+	<h4><%=h @event.name %></h4>
+	<ul>
+	<% i=0 %>
+	<% for news_item in @event.news_items %>
+		<% if i <= 10 %>
+			<li class="<%= cycle('normal', 'alt') %>">&raquo; <%= link_to truncate(h(news_item.content), 40, "..."), @event %></li>
+		<% i += 1 %>
+		<% end %>
+	<% end %>
+	</ul>
+	<a href="http://admiteer.com/events/<%=h @event.id %>" target="_top"><img src="/images/widget_buy_btn.jpg" width="213" height="40" alt="Buy Tickets for This Event"></a>
+</div>
